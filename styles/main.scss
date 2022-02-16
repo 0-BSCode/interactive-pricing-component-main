@@ -1,0 +1,92 @@
+@use 'fonts';
+@use 'colors';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 15px;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Manrope;
+    background-image: url("../images/bg-pattern.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0rem -6rem;
+    display: grid;
+    grid-template-rows: 2fr 6fr 1fr;
+}
+
+.head {
+    width: 40rem;
+}
+
+.card {
+
+    // Box around the slider
+    &__switch {
+        position: relative;
+        display: inline-block;
+        width: 4.5rem;
+        height: 2rem;
+    }
+
+    // Hide default HTML checkbox
+    &__checkbox {
+        opacity: 0;
+        height: 0;
+        width: 0;
+    }
+
+    // The slider
+    &__slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+
+        &:before {
+            position: absolute;
+            content: "";
+            width: 2rem;
+            height: 2rem;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        &--round {
+            border-radius: 3rem;
+
+            &:before {
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &__checkbox:checked + &__slider {
+        background-color: red;
+    }
+
+    &__checkbox:focus + &__slider {
+        box-shadow: 0 0 1rem red;
+    }
+
+    &__checkbox:checked + &__slider:before {
+        -webkit-transform: translateX(2.5rem);
+        -ms-transform: translateX(2.5rem);
+        transform: translateX(2.5rem);
+    }
+}
