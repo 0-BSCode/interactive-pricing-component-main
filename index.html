@@ -6,17 +6,13 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./styles/main.css">
+  
   <title>Frontend Mentor | Interactive pricing component</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-
-  </style>
 </head>
 <body>
   <header class="head">
+    <img class="head__bg" src="./images/pattern-circles.svg">
     <h1 class="head__title">
       Simple, traffic-based pricing
     </h1>
@@ -26,36 +22,43 @@
   </header>
 
   <main class="card">
-    <section class="card__statistics">
+    <article class="card__statistics">
       <p class="card__views">
         100k Pageviews
       </p>
-      <p class="card__monthly">
+      <div class="card__monthly">
         <span class="card__price">
           $16.00
         </span>
-        /month
-      </p>
-    </section>
-    <section class="card__long-slider">
-      <div class="card__placeholder"></div>
-    </section>
-    <section class="card__payment-option">
-      <p class="card__billing">
-        Monthly Billing
-      </p>
-      <label class="card__switch">
-        <input class="card__checkbox" type="checkbox">
-        <span class="card__slider card__slider--round"></span>
-      </label>
-      <p class="card__billing">
-        Yearly Billing
-      </p>
-      <p class="card__discount">
-        25% discount
-      </p>
-    </section>
-    <section class="card__footer">
+        <span class="card__month-txt">
+          /month
+        </span>
+      </div>
+    </article>
+    <article class="card__dragger">
+      <div class="card__dragcontainer">
+        <input type="range" min="0" max="100" value="0" class="card__dragbar" id="myRange">
+      </div>
+    </article>
+    <article class="card__payment-option">
+      <div class="card__payment-container">
+        <p class="card__billing-monthly">
+          Monthly Billing
+        </p>
+        <label class="card__switch">
+          <input class="card__checkbox" type="checkbox">
+          <span class="card__slider"></span>
+        </label>
+        <p class="card__billing-yearly">
+          Yearly Billing
+        </p>
+        <p class="card__discount">
+          25% discount
+        </p>
+      </div>
+    </article>
+    <div class="card__horizontal"></div>
+    <article class="card__footer">
       <ul class="card__perks-list">
         <li class="card__perk">
           Unlimited websites
@@ -67,15 +70,20 @@
           Email reports
         </li>
       </ul>
-      <button class="card__trial">
-        Start my trial
-      </button>
-    </section>
+      <div class="card__btn-container">
+        <button class="card__trial">
+          <p class="card__trial-txt">
+            Start my trial
+          </p>
+        </button>
+      </div>
+    </article>
   </main>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Bryan Sanchez</a>.
   </div>
+  <script src="./main.js"></script>
 </body>
 </html>

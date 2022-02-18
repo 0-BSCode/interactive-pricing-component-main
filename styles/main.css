@@ -2,6 +2,22 @@
   font-family: "Manrope";
   src: url("../fonts/Manrope-VariableFont_wght.ttf");
 }
+@font-face {
+  font-family: "ManropeEB";
+  src: url("../fonts/static/Manrope-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "ManropeB";
+  src: url("../fonts/static/Manrope-Bold.ttf");
+}
+@font-face {
+  font-family: "ManropeEL";
+  src: url("../fonts/static/Manrope-ExtraLight.ttf");
+}
+@font-face {
+  font-family: "ManropeL";
+  src: url("../fonts/static/Manrope-Light.ttf");
+}
 /*
 ## Colors
 
@@ -40,25 +56,140 @@ body {
   background-image: url("../images/bg-pattern.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: 0rem -6rem;
+  background-position: 0rem -4rem;
   display: grid;
-  grid-template-rows: 2fr 6fr 1fr;
+  grid-template-rows: 4fr 12fr 1fr;
+  background-color: #fafbff;
 }
 
 .head {
-  width: 40rem;
+  text-align: center;
+  align-self: center;
+  position: relative;
+  top: 1rem;
+  width: 30rem;
+  margin: auto;
+}
+.head__bg {
+  position: absolute;
+  top: -2.3rem;
+  left: 10.5rem;
+  width: 8.8rem;
+  z-index: -1;
+}
+.head__title {
+  color: #293356;
+  font-family: ManropeEB;
+  font-size: 1.8rem;
+  margin-bottom: 0.35rem;
+}
+.head__subtitle {
+  color: #858fad;
+  font-family: ManropeB;
+  font-size: 0.9rem;
 }
 
+.card {
+  position: relative;
+  width: 38.5rem;
+  height: 29rem;
+  margin: auto;
+  padding: 2.5rem 3.5rem;
+  color: #858fad;
+  background-color: white;
+  border-radius: 0.7rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1.5fr;
+  box-shadow: 0rem 0.8rem 2rem -1rem rgba(0, 0, 0, 0.5);
+}
+.card__statistics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.card__views, .card__monthly {
+  align-self: center;
+  font-family: ManropeEB;
+}
+.card__views {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  letter-spacing: 0.15rem;
+}
+.card__monthly {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+.card__price {
+  font-size: 3rem;
+  color: #293356;
+  padding-right: 0.4rem;
+}
+.card__month-txt {
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+}
+.card__dragger {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.card__dragcontainer {
+  align-self: center;
+  width: 100%;
+}
+.card__dragbar {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  position: relative;
+  bottom: 0.5rem;
+  width: 100%;
+  height: 0.6rem;
+  border-radius: 0.3rem;
+  background: linear-gradient(to right, #eaeefb 0%, #eaeefb 100%);
+  transition: background 0.4s;
+}
+.card__dragbar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 3rem;
+  height: 3rem;
+  background: #10d5c2;
+  cursor: pointer;
+  border-radius: 50%;
+  background-image: url("../images/icon-slider.svg");
+  background-size: 1.3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0rem 1rem 0.9rem 0.4rem #a5f3eb;
+  opacity: 0.7;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.card__dragbar::-webkit-slider-thumb:active {
+  opacity: 1;
+}
+.card__payment-option {
+  position: relative;
+}
+.card__payment-container {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  font-size: 0.8rem;
+  font-family: ManropeB;
+}
 .card__switch {
   position: relative;
   display: inline-block;
-  width: 4.5rem;
-  height: 2rem;
-}
-.card__checkbox {
-  opacity: 0;
-  height: 0;
-  width: 0;
+  width: 3.2rem;
+  height: 1.6rem;
+  margin: 0rem 1rem;
 }
 .card__slider {
   position: absolute;
@@ -69,27 +200,104 @@ body {
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
+  border-radius: 3rem;
 }
 .card__slider:before {
   position: absolute;
   content: "";
-  width: 2rem;
-  height: 2rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  top: 0.25rem;
+  left: 0.25rem;
   background-color: white;
   transition: 0.4s;
-}
-.card__slider--round {
-  border-radius: 3rem;
-}
-.card__slider--round:before {
   border-radius: 50%;
 }
-.card__checkbox:checked + .card__slider {
-  background-color: red;
+.card__checkbox {
+  opacity: 0;
+  height: 0;
+  width: 0;
 }
-.card__checkbox:focus + .card__slider {
-  box-shadow: 0 0 1rem red;
+.card__checkbox:checked + .card__slider {
+  background-color: #a5f3eb;
 }
 .card__checkbox:checked + .card__slider:before {
-  transform: translateX(2.5rem);
+  transform: translateX(1.5rem);
+}
+.card__billing-monthly, .card__billing-yearly {
+  font-size: 0.85rem;
+}
+.card__billing-yearly {
+  margin-right: 0.7rem;
+}
+.card__discount {
+  background-color: #feece7;
+  color: #ff8c66;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+.card__horizontal {
+  background-color: #fafbff;
+  position: absolute;
+  top: 17rem;
+  width: 100%;
+  height: 0.35rem;
+}
+.card__footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.card__perks-list {
+  align-self: center;
+  list-style-type: none;
+}
+.card__perk {
+  font-family: ManropeB;
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+.card__perk:before {
+  content: "";
+  background-image: url("../images/icon-check.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 0.7rem;
+  height: 0.7rem;
+  padding-right: 1.8rem;
+  display: inline-block;
+}
+.card__btn-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.card__trial {
+  align-self: center;
+  background-color: #293356;
+  color: white;
+  font-family: Manrope;
+  width: 12.5rem;
+  height: 3rem;
+  border: none;
+  border-radius: 3rem;
+  position: absolute;
+  right: 0;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+}
+.card__trial-txt {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.attribution {
+  font-size: 0.8rem;
+  text-align: center;
+  align-self: end;
+}
+
+.attribution a {
+  color: #3e52a3;
 }/*# sourceMappingURL=main.css.map */

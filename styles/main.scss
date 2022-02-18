@@ -19,33 +19,161 @@ body {
     background-image: url("../images/bg-pattern.svg");
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: 0rem -6rem;
+    background-position: 0rem -4rem;
     display: grid;
-    grid-template-rows: 2fr 6fr 1fr;
+    grid-template-rows: 4fr 12fr 1fr;
+    background-color: colors.$vpale-blue;
 }
 
 .head {
-    width: 40rem;
+    text-align: center;
+    align-self: center;
+    position: relative;
+    top: 1rem;
+    width: 30rem;
+    margin: auto;
+
+    &__bg {
+        position: absolute;
+        top: -2.3rem;
+        left: 10.5rem;
+        width: 8.8rem;
+        z-index: -1;
+    }
+
+    &__title {
+        color: colors.$ddesat-blue;
+        font-family: ManropeEB;
+        font-size: 1.8rem;
+        margin-bottom: 0.35rem;
+    }
+
+    &__subtitle {
+        color: colors.$gray-blue;
+        font-family: ManropeB;
+        font-size: 0.9rem;
+    }
 }
 
 .card {
+    position: relative;
+    width: 38.5rem;
+    height: 29rem;
+    margin: auto;
+    padding: 2.5rem 3.5rem;
+    color: colors.$gray-blue;
+    background-color: colors.$white;
+    border-radius: 0.7rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1.5fr;
+    box-shadow: 0rem 0.8rem 2rem -1rem rgb(0,0,0,0.5);
+
+    &__statistics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+    }
+
+    &__views,
+    &__monthly {
+        align-self: center;
+        font-family: ManropeEB;
+    }
+
+    &__views {
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        letter-spacing: 0.15rem;
+    }
+
+    &__monthly {
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    &__price {
+        font-size: 3rem;
+        color: colors.$ddesat-blue;
+        padding-right: 0.4rem;
+    }
+    
+    &__month-txt {
+        font-size: 1.1rem;
+        letter-spacing: 0.1rem;
+    }
+
+    &__dragger {
+        display: grid;
+        grid-template-rows: 1fr;
+    }
+
+    &__dragcontainer {
+        align-self: center;
+        width: 100%;
+    }
+
+    &__dragbar {
+        // Set 'appearance' to none to override default appearance
+        -webkit-appearance: none;
+        appearance: none;
+        position: relative;
+        bottom: 0.5rem;
+        width: 100%;
+        height: 0.6rem;
+        border-radius: 0.3rem;
+        background: linear-gradient(to right, colors.$lg-blue 0%, colors.$lg-blue 100%);
+        transition: background 0.4s;
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 3rem;
+            height: 3rem;
+            background: colors.$strong-cyan;
+            cursor: pointer;
+            border-radius: 50%;
+            background-image: url("../images/icon-slider.svg");
+            background-size: 1.3rem;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0rem 1rem 0.9rem 0.4rem colors.$soft-cyan;
+            opacity: 0.7;
+            transition: all 0.2s;
+
+            &:active {
+                opacity: 1;
+            }
+        }
+    }
+    
+    &__payment-option {
+        position: relative;
+    }
+
+    &__payment-container {
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        font-size: 0.8rem;
+        font-family: ManropeB;
+    }
 
     // Box around the slider
     &__switch {
         position: relative;
         display: inline-block;
-        width: 4.5rem;
-        height: 2rem;
+        width: 3.2rem;
+        height: 1.6rem;
+        margin: 0rem 1rem;
     }
 
-    // Hide default HTML checkbox
-    &__checkbox {
-        opacity: 0;
-        height: 0;
-        width: 0;
-    }
-
-    // The slider
+    // The slider (span element is actually the one used
+    // for the slider)
     &__slider {
         position: absolute;
         cursor: pointer;
@@ -56,37 +184,129 @@ body {
         background-color: #ccc;
         -webkit-transition: .4s;
         transition: .4s;
-
+        border-radius: 3rem;
+        
+        // Circle in the slider
         &:before {
             position: absolute;
             content: "";
-            width: 2rem;
-            height: 2rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            top: 0.25rem;
+            left: 0.25rem;
             background-color: white;
             -webkit-transition: .4s;
             transition: .4s;
-        }
-
-        &--round {
-            border-radius: 3rem;
-
-            &:before {
-                border-radius: 50%;
-            }
+            border-radius: 50%;
         }
     }
 
+    // Hide default HTML checkbox
+    &__checkbox {
+        opacity: 0;
+        height: 0;
+        width: 0;
+    }
+
+    // Make the slider red
     &__checkbox:checked + &__slider {
-        background-color: red;
+        background-color: colors.$soft-cyan;
     }
 
-    &__checkbox:focus + &__slider {
-        box-shadow: 0 0 1rem red;
-    }
-
+    // Move the circle in the slider
     &__checkbox:checked + &__slider:before {
-        -webkit-transform: translateX(2.5rem);
-        -ms-transform: translateX(2.5rem);
-        transform: translateX(2.5rem);
+        -webkit-transform: translateX(1.5rem);
+        -ms-transform: translateX(1.5rem);
+        transform: translateX(1.5rem);
     }
+
+    &__billing-monthly,
+    &__billing-yearly {
+        font-size: 0.85rem;
+    }
+
+    &__billing-yearly {
+        margin-right: 0.7rem;
+    }
+
+    &__discount {
+        background-color: colors.$lg-red;
+        color: colors.$light-red;
+        font-size: 0.7rem;
+        padding: 0.1rem 0.4rem;
+        border-radius: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    &__horizontal {
+        background-color: colors.$vpale-blue;
+        position: absolute;
+        top: 17rem;
+        width: 100%;
+        height: 0.35rem;
+    }
+
+    &__footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &__perks-list {
+        align-self: center;
+        list-style-type: none;
+    }
+
+    &__perk {
+        // list-style-image: url("../images/icon-check.svg");
+        font-family: ManropeB;
+        font-size: 0.9rem;
+        margin-bottom: 0.7rem;
+
+        &:before {
+            content: "";
+            background-image: url("../images/icon-check.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 0.7rem;
+            height: 0.7rem;
+            padding-right: 1.8rem;
+            display: inline-block;
+        }
+    }
+
+    &__btn-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    &__trial {
+        align-self: center;
+        background-color: colors.$ddesat-blue;
+        color: colors.$white;
+        font-family: Manrope;
+        width: 12.5rem;
+        height: 3rem;
+        border: none;
+        border-radius: 3rem;
+        position: absolute;
+        right: 0;
+        letter-spacing: 0.05rem;
+        cursor: pointer;
+    }
+
+    &__trial-txt {
+        opacity: 0.8;
+        transition: 0.2s;
+    }
+}
+
+.attribution { 
+    font-size: 0.8rem;
+    text-align: center;
+    align-self: end;
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
 }
