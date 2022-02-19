@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="head">
-    <img class="head__bg" src="./images/pattern-circles.svg">
+    <img class="head__bg" src="./images/pattern-circles.svg" alt="Background pattern">
     <h1 class="head__title">
       Simple, traffic-based pricing
     </h1>
@@ -22,10 +22,26 @@
   </header>
 
   <main class="card">
-    <article class="card__statistics">
+    <article class="card__statistics card__statistics--desktop">
       <p class="card__views">
         100k Pageviews
       </p>
+      <div class="card__monthly">
+        <span class="card__price">
+          $16.00
+        </span>
+        <span class="card__month-txt">
+          /month
+        </span>
+      </div>
+    </article>
+    <article class="card__statistics card__statistics--mobile">
+      <p class="card__views">
+        100k Pageviews
+      </p>
+      <div class="card__dragcontainer card__dragcontainer--mobile">
+        <input type="range" min="0" max="100" value="0" class="card__dragbar" id="myRange">
+      </div>
       <div class="card__monthly">
         <span class="card__price">
           $16.00
@@ -52,8 +68,11 @@
         <p class="card__billing-yearly">
           Yearly Billing
         </p>
-        <p class="card__discount">
+        <p class="card__discount card__discount--desktop">
           25% discount
+        </p>
+        <p class="card__discount card__discount--mobile">
+          -25%
         </p>
       </div>
     </article>
@@ -80,10 +99,10 @@
     </article>
   </main>
   
-  <div class="attribution">
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Bryan Sanchez</a>.
-  </div>
+  </footer>
   <script src="./main.js"></script>
 </body>
 </html>
